@@ -11,6 +11,7 @@ define('ROOT', dirname('__FILE__'));
 
 //2. Подключение файлов
 require_once (ROOT.'/components/Router.php');
+require_once (ROOT.'/components/Db.php');
 
 
 $router = new Router();

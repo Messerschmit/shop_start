@@ -4,5 +4,5 @@ return array(
     'host' => 'localhost',
     'dbname' => 'super_mag',
     'user' => 'root',
-    'passsword' => 'root'
+    'password' => 'root'
 );
