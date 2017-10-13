@@ -1,7 +1,5 @@
 <?php
 
-//require_once (ROOT.'/controllers/SiteController.php');
-
 class Router
 {
     private $routes;
@@ -32,9 +30,7 @@ class Router
     public function run(){
 
         $uri = $this->getURI();
-
         foreach ($this->routes as $uriPattern=>$path){
-
             if (preg_match("~$uriPattern~", $uri)){
                 $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
                 $segment = explode('/', $internalRoute);
