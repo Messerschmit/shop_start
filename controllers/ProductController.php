@@ -1,14 +1,23 @@
 <?php
 
+include_once ROOT.'/models/Category.php';
+include_once ROOT.'/models/Product.php';
 
 class ProductController
 {
-     /*
-    *Return the requsted page
-    *@return bool
-    */
-    public function actionView()
+
+    /**
+     * Return product page
+     * @param $productId
+     * @return bool
+     */
+    public function actionView($productId)
     {
+        $categories = [];
+        $categories = Category::getCategoriesList();
+
+        $product = Product::getProductById($productId);
+
         require_once (ROOT.'/views/product/view.php');
 
         return true;

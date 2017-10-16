@@ -8,7 +8,7 @@ class CatalogController
 
 
     /**
-     * Returns the requsted page
+     * Returns the requsted page (index)
      * @return bool
      */
     public static function actionIndex()
@@ -20,6 +20,24 @@ class CatalogController
         $latestProducts = Product::getLatestProducts(10);
 
         require_once ROOT.'/views/catalog/index.php';
+
+        return true;
+    }
+
+
+    /**
+     * Return the requsted page with Products List By Category
+     * @param $categoryId
+     * @return bool
+     */
+    public static function actionCategory($categoryId)
+    {
+        $categories = [];
+        $categories = Category::getCategoriesList();
+
+        $categoryProducts = Product::getProductsListByCategory($categoryId);
+
+        require_once (ROOT.'/views/catalog/category.php');
 
         return true;
     }
