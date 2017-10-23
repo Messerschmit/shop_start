@@ -120,4 +120,27 @@ class Product
 
         }
     }
+    
+    public static function getTotalProductsInCategory($categoryId)
+    {
+        try {
+            
+            $db = Db::getConnection();
+            
+        } catch (PDOException $exc) {
+            
+            echo $exc->getMessage();
+        }
+        
+        $query = 'SELECT count(id) as count FROM product'
+                .' WHERE status = "1" AND category_id ="'. $categoryId.'"';
+        
+        $result = $db -> query($query);
+        
+        $result -> setFetchMode(PDO::FETCH_ASSOC);
+        
+        $row = $result -> fetch();
+        
+        return $row['count'];
+    }
 }
