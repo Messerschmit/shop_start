@@ -17,7 +17,7 @@ class CatalogController
         $categories = Category::getCategoriesList();
 
         $latestProducts = [];
-        $latestProducts = Product::getLatestProducts(10);
+        $latestProducts = Product::getLatestProducts(5);
 
         require_once ROOT.'/views/catalog/index.php';
 
@@ -30,12 +30,13 @@ class CatalogController
      * @param $categoryId
      * @return bool
      */
-    public static function actionCategory($categoryId)
+    public static function actionCategory($categoryId, $page = 1)
     {
+
         $categories = [];
         $categories = Category::getCategoriesList();
 
-        $categoryProducts = Product::getProductsListByCategory($categoryId);
+        $categoryProducts = Product::getProductsListByCategory($categoryId, $page);
 
         require_once (ROOT.'/views/catalog/category.php');
 

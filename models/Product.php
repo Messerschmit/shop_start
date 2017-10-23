@@ -3,7 +3,7 @@
 
 class Product
 {
-    const SHOW_BY_DEFAULT = 10;
+    const SHOW_BY_DEFAULT = 6;
 
 
     /**
@@ -24,7 +24,8 @@ class Product
 
         $productsList = [];
 
-        $query = 'SELECT id, name, price, image, is_new FROM product WHERE status = "1" ORDER BY id DESC LIMIT '. $count;
+        $query = 'SELECT id, name, price, image, is_new FROM product WHERE'
+                    .' status = "1" ORDER BY id DESC LIMIT '. $count;
 
         $result = $db -> query($query);
 
@@ -48,7 +49,7 @@ class Product
      * @param $categoryId
      * @return array
      */
-    public static function getProductsListByCategory($categoryId)
+    public static function getProductsListByCategory($categoryId, $page = 1)
     {
         if ($categoryId){
 
@@ -62,9 +63,13 @@ class Product
 
             }
 
+            $page = intval($page);
+            $offset = ($page-1)*self::SHOW_BY_DEFAULT;
+
             $products = [];
 
-            $query = 'SELECT id, name, price, image, is_new FROM product WHERE status = 1 and category_id = '. $categoryId .' ORDER BY id DESC LIMIT '. self::SHOW_BY_DEFAULT;
+            $query = 'SELECT id, name, price, image, is_new FROM product WHERE status = 1 and category_id = '
+                .$categoryId .' ORDER BY id DESC LIMIT '. self::SHOW_BY_DEFAULT. ' OFFSET '.$offset;
 
             $result = $db -> query($query);
 

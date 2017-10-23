@@ -22,8 +22,9 @@ class Category
         $categoryList = [];
 
         //$query = 'SELECT * FROM category ORDER by sort_order ASC';
+        $query = 'SELECT id, name FROM category ORDER by sort_order ASC';
 
-        $result = $db->query('SELECT id,name FROM `category` ORDER BY sort_order ASC');
+        $result = $db->query($query);
 
         $i = 0;
 
