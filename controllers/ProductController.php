@@ -5,7 +5,6 @@ include_once ROOT.'/models/Product.php';
 
 class ProductController
 {
-
     /**
      * Return product page
      * @param $productId

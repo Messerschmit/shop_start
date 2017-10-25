@@ -98,6 +98,36 @@ class User
         return false;
     }
     
+    public static function checkUserData($email, $password)
+    {
+        try {
+            
+            $db = Db::getConnection();
+            
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+        $sql = 'SELECT * FROM user WHERE email = :email AND password = :password';
+        
+        $result = $db ->prepare($sql);
+        $result ->bindParam(':email', $email, PDO::PARAM_INT);
+        $result ->bindParam(':password', $password, PDO::PARAM_INT);
+        $result ->execute();
+        
+        $user = $result ->fetch();
+        if($user){
+            return $user['id'];
+        }
+        
+        return false;
+    }
+    
+    public static function auth($userId)
+    {
+        session_start();
+        $_SESSION['user'] = $userId;
+    }
+    
     
     
 }

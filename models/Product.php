@@ -1,6 +1,5 @@
 <?php
 
-
 class Product
 {
     const SHOW_BY_DEFAULT = 6;

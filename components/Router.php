@@ -38,8 +38,12 @@ class Router
                 $actionName = 'action'.ucfirst(array_shift($segment));
                 $parameters = $segment;
                 $controllerFile = ROOT.'/controllers/'.$controllerName.'.php';
+//                echo $controllerName.'<br>';
+//                echo $actionName.'<br>';
+//                echo $controllerFile.'<br>';
                 if(file_exists($controllerFile)){
                     include_once ($controllerFile);
+                    //echo 'done<br>';
                 }
 
                 $controllerObject = new $controllerName;
