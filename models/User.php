@@ -122,11 +122,94 @@ class User
         return false;
     }
     
+    /*
+     * Возвращает пользователя по id 
+     * @param $id integer 
+     */
+    public static function getUserById($id) {
+        if ($id){
+            try {
+            
+                $db = Db::getConnection();
+            
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
+            
+            $sql = 'SELECT * FROM user WHERE id = :id';
+            
+            $result = $db->prepare($sql);
+            $result->bindParam(':id',$id, PDO::PARAM_INT);
+            
+            //Указываем, что хотим получить данные в виде массив
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+            $result->execute();
+            
+            return $result->fetch();
+        }
+    }
+    
+    /*
+     * Редактирует данные пользователя
+     * @param integer $userId
+     * @param string $name
+     * @param string $password
+     */
+    public static function edit($userId, $name, $password) {
+        try {
+            
+            $db = Db::getConnection();
+            
+        } catch (PDOException $exc) {
+            
+            echo $exc->getMessage();
+        }
+        
+        $sql = 'UPDATE user set name = :name, password = :password WHERE id = :id';
+        
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $userId, PDO::PARAM_INT);
+        $result->bindParam(':name', $name, PDO::PARAM_STR);
+        $result->bindParam(':password', $password, PDO::PARAM_STR);
+        
+        return $result->execute();
+    }
+
+    /*
+     * Запоминаем пользователя 
+     * @param $userId int
+     *
+     */
     public static function auth($userId)
     {
-        session_start();
         $_SESSION['user'] = $userId;
     }
+
+    /*
+     * Проверка зашел ли на сайт пользователь, 
+     * если нет перемещает на страницу Входа
+     * 
+     */
+    public static function checkLogged()
+    {
+        //Если сессия есть, возвращаем идентификатор пользователя
+        if (isset($_SESSION['user'])){
+            return $_SESSION['user'];
+        }
+        header ("Location: /user/login");
+    }
+    
+    /*
+     * Проверка авторизирован ли пользователь или  
+     * зашел как гость
+     */
+    public static function isGuest(){
+        if (isset($_SESSION['user'])){
+            return false;
+        }
+        return true;
+    }
+    
     
     
     

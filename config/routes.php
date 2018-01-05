@@ -7,6 +7,8 @@ return array(
     'catalog' => 'catalog/index', //actionIndex CatalogController
     'user/register' => 'user/register', //actionRegister UserController
     'user/login' => 'user/login', //actionLogin UserController
+    'user/logout' => 'user/logout', //actionLogout UserController
+    'cabinet/edit' => 'cabinet/edit', //actionEdit CabinetController
     'cabinet' => 'cabinet/index', //actionIndex CabinetController
     '' => 'site/index', //actionIndex в SiteController
 );
