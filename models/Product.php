@@ -120,6 +120,47 @@ class Product
         }
     }
     
+    /*
+     * Получаем данные продуктов по Id-м
+     * @param array $idArray
+     * @return array
+     */
+    public static function getProductsByIds($idArray) {
+        
+        $products = [];
+        
+        try {
+    
+            $db = Db::getConnection();
+            
+        } catch (PDOException $exc) {
+            
+            echo $exc->getMessage();
+        }
+        
+        $idsString = implode(',', $idArray);
+        
+        //echo $idsString;
+        
+        $sql = "SELECT * FROM product WHERE status = '1' AND id IN ($idsString)";
+        
+        $result = $db->query($sql);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+    
+        $i = 0;
+        
+        while ($row = $result->fetch()){
+            //echo '<pre>';print_r($row);echo '</pre>';
+            $products[$i]['id'] = $row['id'];
+            $products[$i]['code'] = $row['code'];
+            $products[$i]['name'] = $row['name'];
+            $products[$i]['price'] = $row['price'];
+            $i++;
+        }
+        //echo '<pre>';print_r($products);echo '</pre>';
+        return $products;
+    }
+    
     public static function getTotalProductsInCategory($categoryId)
     {
         try {
