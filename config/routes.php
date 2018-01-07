@@ -13,6 +13,7 @@ return array(
     'contacts' => 'site/contact', //actionContact в SiteController
     'cart/add/([0-9]+)' => 'cart/add/$1', //actionAdd в CartController
     'cart/addAjax/([0-9]+)' => 'cart/addAjax/$1', //actionAdd в CartController
+    'cart/checkout' => 'cart/checkout', //actionCheckout в CartController
     'cart' => 'cart/index', //actionIndex в CartController
     '' => 'site/index', //actionIndex в SiteController
 );

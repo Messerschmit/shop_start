@@ -36,7 +36,7 @@ class User
     }
     
     /*
-     * Checking the data which was entered
+     * Checking the data was entered
      * @param string $name - user name
      * @return bool
      */
@@ -48,7 +48,19 @@ class User
     }
     
     /*
-     * Checking the data which was entered
+     * Checking the data was entered
+     * @param string $phone
+     * @return bool
+     */
+    public static function checkPhone($phone) {
+        if (strlen($phone)>=6){
+            return true;
+        }
+        return false;
+    }    
+    
+    /*
+     * Checking the data was entered
      * @param string $email - user email
      * @return bool
     */
@@ -60,7 +72,7 @@ class User
     }
     
     /*
-     * Checking the data which was entered
+     * Checking the data was entered
      * @param string $password - user password
      * @return bool
     */

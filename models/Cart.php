@@ -57,7 +57,11 @@ class Cart {
         }
         return false;
     }
-    
+    /*
+     * Получаем сумму покупок 
+     * @param array $products
+     * @return int
+     */
     public static function getTotalPrice($products) {
         
         $productsInCart = self::getProducts();
@@ -71,5 +75,15 @@ class Cart {
         }
         
         return $total;
+    }
+    
+    /*
+     * Очищает корзину;
+     *      
+     */
+    public static function clear() {
+        if (isset($_SESSION['products'])){
+            unset($_SESSION['products']);
+        }
     }
 }
