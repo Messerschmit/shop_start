@@ -161,6 +161,44 @@ class Product
         return $products;
     }
     
+    /*
+     * Получаем данные рекомендованных продуктов
+     * 
+     * @return array 
+     */
+    public static function getRecomendedProducts(){
+        
+        $products = [];
+                
+        try {
+            
+            $db = Db::getConnection();
+            
+        } catch (PDOException $exc) {
+            
+            echo $exc->getMessage();
+        }
+        
+        $sql = "SELECT * FROM product WHERE is_recomended = '1' AND status = '1'";
+        
+        $result = $db->query($sql);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        
+        $i = 0;
+        
+        while ($row = $result->fetch()){
+            $products[$i]['id'] = $row['id'];
+            $products[$i]['name'] = $row['name'];
+            $products[$i]['price'] = $row['price'];
+            $products[$i]['image'] = $row['image'];
+            $i++;
+        }
+        
+        return $products;
+            
+    }
+
+        
     public static function getTotalProductsInCategory($categoryId)
     {
         try {

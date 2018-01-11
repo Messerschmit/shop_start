@@ -13,6 +13,9 @@ class SiteController
 
         $latestProducts = [];
         $latestProducts = Product::getLatestProducts(6);
+        
+        $recomendedProducts = [];
+        $recomendedProducts = Product::getRecomendedProducts();
 
         require_once (ROOT.'/views/site/index.php');
 
