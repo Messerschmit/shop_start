@@ -30,8 +30,9 @@
                             <tr>
                                 <th>Код товара</th>
                                 <th>Название</th>
-                                <th>Стоимость, шт</th>
+                                <th>Стоимость, грн</th>
                                 <th>Количество, шт</th>
+                                <th>Удалить</th>
                             </tr>
                             <?php foreach($products as $product): ?>
                             <tr>
@@ -43,10 +44,11 @@
                                 </td>
                                 <td><?= $product['price']; ?></td>
                                 <td><?= $productsInCart[$product['id']]; ?></td>
+                                <td><a href="/cart/delete/<?= $product['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
                             </tr>
                             <?php endforeach; ?>
                             <tr>
-                                <td colspan="3">Общая стоимость:</td>
+                                <td colspan="4">Общая стоимость:</td>
                                 <td><?= $totalPrice; ?></td>
                             </tr>
                         </table>

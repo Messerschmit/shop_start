@@ -33,7 +33,7 @@
 
                     <?php else: ?>
 
-                        <!--<p>Выбрано товаров: <?php echo $totalQuantity; ?>, на сумму: <?php echo $totalPrice; ?>, грн.</p><br/>-->
+                        <p>Выбрано товаров: <?php echo $totalQuantity; ?>, на сумму: <?php echo $totalPrice; ?>, грн.</p><br/>
 
                         <div class="col-sm-4">
                             <?php if (isset($errors) && is_array($errors)): ?>

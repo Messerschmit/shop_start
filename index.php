@@ -11,6 +11,8 @@ define('ROOT', dirname('__FILE__'));
 
 session_start();
 
+//echo '<pre>';print_r($_SESSION);echo '</pre>';
+
 //2. Подключение файлов
 require_once (ROOT.'/components/Autoload.php');
 

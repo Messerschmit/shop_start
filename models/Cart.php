@@ -5,6 +5,7 @@ class Cart {
     /*
      * Добавление товара в корзин/у 
      * @param integer $id
+     * @return int
      */
     public static function addProduct($id){
         $id = intval($id);
@@ -25,6 +26,37 @@ class Cart {
             //Добавление нового товара в корзину
             $productsInCart[$id] = 1;
         }
+        $_SESSION['products'] = $productsInCart;
+        //echo '<pre>';print_r($_SESSION['products']);die();
+        return self::countItem();
+    }
+    
+    /*
+     * Удаляем товары из корзины 
+     * @param int $id
+     * @return int 
+     *      */
+    public static function deleteProduct($id) {
+        $id = intval($id);
+        
+        //Пустой массив для товаров в карзине
+        $productsInCart = [];
+        
+        //Если в корзине уже есть товар с $id, они хранятся в сессии
+        if (isset($_SESSION['products'])){
+            
+            $productsInCart = $_SESSION['products'];
+        }
+        
+        //Если товар есть в корзине несколько раз, то удаляем 1 экземпляр        
+        if ($productsInCart[$id] > 1){
+            $productsInCart[$id]--;
+        } else {
+            unset($productsInCart[$id]);
+        }
+        
+        //unset($productsInCart[$id]);
+        
         $_SESSION['products'] = $productsInCart;
         //echo '<pre>';print_r($_SESSION['products']);die();
         return self::countItem();

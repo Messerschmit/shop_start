@@ -141,4 +141,10 @@ class CartController {
         
         return true;
     }
+    
+    public function actionDelete($id){
+        Cart::deleteProduct($id);
+        //Перенаправляем в корзину
+        header("Location: /cart/");
+    }
 }
