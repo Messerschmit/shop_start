@@ -12,7 +12,7 @@ class CabinetController
     {
         $userId = User::checkLogged();
         $user = User::getUserById($userId);
-
+        //echo '<br>'.'<pre>';print_r($user); echo '</pre>'; 
         require_once (ROOT.'/views/cabinet/index.php');
         return true;
     }

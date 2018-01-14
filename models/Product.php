@@ -41,9 +41,50 @@ class Product
 
         return $productsList;
     }
+    /*
+     * Получаем список всех товаров
+     * @return array $productList
+     */
+    public static function getProductsList()
+    {
+        try {
+            
+            $db = Db::getConnection();
+            
+        } catch (PDOException $exc) {
+            
+            echo $exc->getMessage();
+        }
+        
+        $sql = "SELECT * FROM product ORDER BY id ASC";
+        
+        $result = $db->query($sql);
+        
+        $productList = [];
+        
+        $i = 0;
+        
+        while( $row = $result->fetch() ){
+            $productList[$i]['id'] = $row['id'];
+            $productList[$i]['name'] = $row['name'];
+            $productList[$i]['category_id'] = $row['category_id'];
+            $productList[$i]['code'] = $row['code'];
+            $productList[$i]['price'] = $row['price'];
+            $productList[$i]['availability'] = $row['availability'];
+            $productList[$i]['brand'] = $row['brand'];
+            $productList[$i]['image'] = $row['image'];
+            $productList[$i]['description'] = $row['description'];
+            $productList[$i]['is_new'] = $row['is_new'];
+            $productList[$i]['is_recomended'] = $row['is_recomended'];
+            $productList[$i]['status'] = $row['status'];
+            
+            $i++;
+        }
+        
+        return $productList;
+    }
 
-
-    /**
+        /**
      * Returns the required products list by category_id
      * @param $categoryId
      * @return array

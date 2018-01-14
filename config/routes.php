@@ -16,5 +16,7 @@ return array(
     'cart/checkout' => 'cart/checkout', //actionCheckout в CartController
     'cart/delete/([0-9]+)' => 'cart/delete/$1', //actionDelete в CartController
     'cart' => 'cart/index', //actionIndex в CartController
+    'admin/adminProduct' => 'adminProduct/index', //actionIndex в AdminProductController
+    'admin' => 'admin/index', //actionIndex в AdminController
     '' => 'site/index', //actionIndex в SiteController
 );
